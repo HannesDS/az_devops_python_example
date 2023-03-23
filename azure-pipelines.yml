@@ -27,4 +27,4 @@ steps:
       artifactFeed: 'datamindedacademy/example_package'
   
   - script: |
-      python -m twine upload -r example_package --config-file $(PYPIRC_PATH) dist/*.whl
+      poetry run twine upload -r example_package --config-file $(PYPIRC_PATH) dist/*.whl
