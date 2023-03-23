@@ -21,3 +21,10 @@ steps:
   - script: |
       poetry build
     displayName: 'Build'
+  
+  - task: TwineAuthenticate@1
+    inputs:
+      artifactFeed: 'datamindedacademy/example_package'
+  
+  - script: |
+      python -m twine upload -r example_package --config-file $(PYPIRC_PATH) dist/*.whl
