@@ -11,7 +11,7 @@ steps:
     displayName: 'Install dependencies'
 
   - script: |
-      poetry run black
+      poetry run black .
     displayName: 'Lint'
 
   - script: |
