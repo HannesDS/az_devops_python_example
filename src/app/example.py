@@ -6,5 +6,4 @@ def my_awesome_method() -> None:
 
 
 def random_computation(a: int, b: int) -> float:
-    return a ** b + b * a / b * 6
-
+    return a**b + b * a / b * 6
