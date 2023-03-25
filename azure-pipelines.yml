@@ -1,6 +1,5 @@
 name: python_package_$(Date:yyyyMMdd)
 
-
 parameters:
   - name: usePoetryCache
     type: string
@@ -17,11 +16,11 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '3.11'
-    displayName: 'Use Python 3.11'
+steps: 
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.11'
+  displayName: 'Use Python 3.11'
 
 - script: |
     curl -sSL https://install.python-poetry.org | python -
@@ -52,21 +51,21 @@ steps:
 
 - script: |
     poetry run black .
-displayName: 'Lint'
+  displayName: 'Lint'
 
 - script: |
     poetry run pytest -v
-displayName: 'Test'
+  displayName: 'Test'
 
 - script: |
     poetry build
-displayName: 'Build'
+  displayName: 'Build'
 
 - task: TwineAuthenticate@1
-inputs:
+  inputs:
     artifactFeed: 'Data Minded Azure Devops Workshop/example_package'
-displayName: 'Authenticate'
+  displayName: 'Authenticate'
 
 - script: |
     poetry run twine upload -r example_package --config-file $(PYPIRC_PATH) dist/*.whl
-displayName: 'Deploy'
+  displayName: 'Deploy'
